@@ -33,3 +33,6 @@ The YOLOv7 model weights file should be placed in the following location:
 
 - `detect/object_detection/weights`: Store the YOLOv7 model weights file in this directory.
 
+## References
+* [YOLOv7](https://github.com/WongKinYiu/yolov7.git)
+* [YOLOv7 ROS2](https://github.com/Marnonel6/YOLOv7_ROS2.git)
