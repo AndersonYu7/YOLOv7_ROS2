@@ -122,21 +122,20 @@ class ObjectDetection(Node):
 
                 # Create a message for the detected objects
                 for *xyxy, conf, cls in reversed(det):
-                    if conf > 0.5:  # Filter objects based on confidence
-                        x1, y1, x2, y2 = map(int, xyxy)
-                        cls_name = self.names[int(cls)]
-                        label = f'{self.names[int(cls)]} {conf:.2f}'
+                    x1, y1, x2, y2 = map(int, xyxy)
+                    cls_name = self.names[int(cls)]
+                    label = f'{self.names[int(cls)]} {conf:.2f}'
 
-                        # Create and populate BoundingBox
-                        bbox = BoundingBox(xmin=x1, ymin=y1, xmax=x2, ymax=y2)
+                    # Create and populate BoundingBox
+                    bbox = BoundingBox(xmin=x1, ymin=y1, xmax=x2, ymax=y2)
 
-                        # Append the data to the DetectionResults message
-                        detections.labels.append(cls_name)
-                        detections.scores.append(float(conf))
-                        detections.bounding_boxes.append(bbox)
+                    # Append the data to the DetectionResults message
+                    detections.labels.append(cls_name)
+                    detections.scores.append(float(conf))
+                    detections.bounding_boxes.append(bbox)
 
-                        # Draw the bounding box
-                        plot_one_box(xyxy, im0, label=label, color=self.colors[int(cls)], line_thickness=2)
+                    # Draw the bounding box
+                    plot_one_box(xyxy, im0, label=label, color=self.colors[int(cls)], line_thickness=2)
 
         # Publish the message with all detected objects and their bounding boxes
         self.publisher_obj.publish(detections)
