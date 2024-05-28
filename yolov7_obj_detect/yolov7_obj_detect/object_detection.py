@@ -33,7 +33,7 @@ class ObjectDetection(Node):
         self.declare_parameter("show_img", True, ParameterDescriptor(description="Show Img"))
 
         weights_file = self.get_parameter("weights").get_parameter_value().string_value
-        self.weights = os.path.join(get_package_share_directory('object_detection'), 'weights', weights_file)
+        self.weights = os.path.join(get_package_share_directory('yolov7_obj_detect'), 'weights', weights_file)
         self.conf_thres = self.get_parameter("conf_thres").get_parameter_value().double_value
         self.iou_thres = self.get_parameter("iou_thres").get_parameter_value().double_value
         self.device = self.get_parameter("device").get_parameter_value().string_value
